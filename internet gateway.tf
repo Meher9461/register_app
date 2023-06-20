@@ -1,9 +1,7 @@
-resource "aws_internet_gateway" "IGW" {
-  vpc_id = aws_vpc.myvpc
-
+resource "aws_internet_gateway" "myigw" {
+  vpc_id = aws_vpc.myVPC.id
 
   tags = {
-    Name = "IGW"
+    Name = "myigw"
   }
-
 }
