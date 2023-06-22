@@ -3,7 +3,7 @@ resource "aws_route_table" "public_route" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.id
+    gateway_id = aws_internet_gateway.myigw.id
   }
   tags = {
     Name = "public_route"
@@ -32,20 +32,21 @@ resource "aws_security_group" "mysg" {
   name        = "mysg"
   description = "allow all traffic"
   vpc_id      = aws_vpc.myvpc.id
-}
 
-ingress {
-  from_port   = 0
-  to_port     = 0
-  protocol    = "-1"
-  cidr_blocks = ["0.0.0.0/0"]
 
-}
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
 
-egress {
-  from_port   = 0
-  to_port     = 0
-  protocol    = "-1"
-  cidr_blocks = ["0.0.0.0/0"]
+  }
 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+
+  }
 }
