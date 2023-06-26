@@ -15,6 +15,9 @@ resource "aws_subnet" "privatesubnet" {
   cidr_block                                  = var.privatesubnet_cidr
   enable_resource_name_dns_a_record_on_launch = "true"
   map_public_ip_on_launch                     = "true"
+  depends_on = [
+    aws_subnet.publicsubnet1
+  ]
   tags = {
     Name = "privatesubnet1"
   }
