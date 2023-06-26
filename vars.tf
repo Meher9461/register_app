@@ -3,7 +3,7 @@ variable "vpc_cidr" {
   
 }
 
-variable "publicsubnet_cidr" {
+variable "publicsubnet1_cidr" {
     default = "10.3.2.0/24"
   
 }
