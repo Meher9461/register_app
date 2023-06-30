@@ -19,7 +19,7 @@ resource "aws_route_table" "private_route" {
 }
 
 resource "aws_route_table_association" "publicasso" {
-  subnet_id      = aws_subnet.publicsubnet1.id
+  subnet_id      = aws_subnet.publicsubnet1[0].id
   route_table_id = aws_route_table.public_route.id
 }
 
