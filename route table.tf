@@ -10,23 +10,24 @@ resource "aws_route_table" "public_route" {
   }
 }
 
-resource "aws_route_table" "private_route" {
-  vpc_id = aws_vpc.myvpc.id
+#resource "aws_route_table" "private_route" {
+#  vpc_id = aws_vpc.myvpc.id
 
-  tags = {
-    Name = "private_route"
-  }
-}
+#  tags = {
+#    Name = "private_route"
+#  }
+#}
 
 resource "aws_route_table_association" "publicasso" {
-  subnet_id      = aws_subnet.publicsubnet1[0].id
+  count          = 3
+  subnet_id      = element(aws_subnet.publicsubnet1.*.id, count.index)
   route_table_id = aws_route_table.public_route.id
 }
 
-resource "aws_route_table_association" "privateasso" {
-  subnet_id      = aws_subnet.privatesubnet.id
-  route_table_id = aws_route_table.private_route.id
-}
+#resource "aws_route_table_association" "privateasso" {
+#  subnet_id      = aws_subnet.privatesubnet.id
+#  route_table_id = aws_route_table.private_route.id
+#}
 
 resource "aws_security_group" "mysg" {
   name        = "mysg"
